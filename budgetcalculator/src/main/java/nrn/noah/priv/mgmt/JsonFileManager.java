@@ -1,4 +1,4 @@
-package nrn.noah.priv;
+package nrn.noah.priv.mgmt;
 
 import java.io.FileReader;
 import java.io.FileWriter;
