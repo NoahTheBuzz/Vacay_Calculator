@@ -1,60 +1,74 @@
 package nrn.noah.priv.util;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
-import nrn.noah.priv.helper.Month;
+import java.util.UUID;
 
 public class Vacation {
-    private String name;
-    private Month month; // Format: "MM-yyyy"
-    private int year;
-    private List<Person> attendees;
-    private List<Payment> paymentHistory;
+    private final UUID VACATION_ID;
+    private final String VACATION_NAME;
+    private final LocalDateTime VACATION_DATE;
+    
+    private List<Person> participants;
+    private List<Transaction> transactions;
 
-    public Vacation() {
-        this.attendees = new ArrayList<>();
-        this.paymentHistory = new ArrayList<>();
+    public Vacation(String name) {
+        this.VACATION_ID = UUID.randomUUID();
+        this.VACATION_NAME = name;
+        this.VACATION_DATE = LocalDateTime.now();
+
+        this.participants = new ArrayList<>();
+        this.transactions = new ArrayList<>();
     }
 
     // Getters and Setters
-    public String getName() {
-        return name;
+    public UUID VACATION_ID() {
+        return VACATION_ID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String VACATION_NAME() {
+        return VACATION_NAME;
     }
 
     public Month getMonth() {
-        return month;
-    }
-
-    public void setMonth(Month month) {
-        this.month = month;
+        return VACATION_DATE.getMonth();
     }
 
     public int getYear() {
-        return year;
+        return VACATION_DATE.getYear();
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public List<Person> getParticipants() {
+        return participants;
     }
 
-    public List<Person> getAttendees() {
-        return attendees;
+    public void addParticipant(Person bonus) {
+        this.participants.add(bonus);
     }
 
-    public void setAttendees(List<Person> attendees) {
-        this.attendees = attendees;
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
-    public List<Payment> getPaymentHistory() {
-        return paymentHistory;
+    public void addTransaction(Transaction transaction) {
+        this.transactions.add(transaction);
     }
 
-    public void setPaymentHistory(List<Payment> paymentHistory) {
-        this.paymentHistory = paymentHistory;
+    public void removeTransaction(Transaction transaction) {
+        this.transactions.remove(transaction);
+    }
+
+    // Functions
+    public String toString() {
+        return "Vacation{" +
+                "VACATION_ID=" + VACATION_ID +
+                ", VACATION_NAME='" + VACATION_NAME + '\'' +
+                ", VACATION_DATE=" + VACATION_DATE +
+                ", participants=" + participants +
+                ", transactions=" + transactions +
+                '}';
     }
 }
 

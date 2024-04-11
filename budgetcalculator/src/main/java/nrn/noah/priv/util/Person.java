@@ -1,65 +1,81 @@
 package nrn.noah.priv.util;
 
 import java.util.Map;
+import java.util.UUID;
 
 public class Person {
-    private String firstName;
-    private String lastName;
+
+    private final UUID USER_ID;
+
+    private final String FIRSTNAME;
+    private final String LASTNAME;
+    
     private double totalPaid;
-    private double totalBorrowed;
+    private double totalOwed;
     // Maps each person's name to the amount owed by this person
-    private Map<String, Double> owesTo;
+    private Map<Person, Double> owesTo;
 
     // Constructors, getters, and setters
-    public Person() {
-    }
-
     public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.USER_ID = UUID.randomUUID();
+        this.FIRSTNAME = firstName;
+        this.LASTNAME = lastName;
         this.totalPaid = 0.0;
-        this.totalBorrowed = 0.0;
+        this.totalOwed = 0.0;
     }
 
     // Getters and Setters
-    public String getFirstName() {
-        return firstName;
+    public UUID USER_ID() {
+        return USER_ID;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String FIRSTNAME() {
+        return FIRSTNAME;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String LASTNAME() {
+        return LASTNAME;
     }
 
     public double getTotalPaid() {
         return totalPaid;
     }
 
-    public void setTotalPaid(double totalPaid) {
-        this.totalPaid = totalPaid;
+    public void increaseTotalPaid(double amountPaid) {
+        this.totalPaid += amountPaid;
     }
 
-    public double getTotalBorrowed() {
-        return totalBorrowed;
+    public double getTotalOwed() {
+        return totalOwed;
     }
 
-    public void setTotalBorrowed(double totalBorrowed) {
-        this.totalBorrowed = totalBorrowed;
+    public void increaseTotalOwed(double amountBorrowed) {
+        this.totalOwed += amountBorrowed;
     }
 
-    public Map<String, Double> getOwesTo() {
+    public Map<Person, Double> getOwesTo() {
         return owesTo;
     }
 
-    public void setOwesTo(Map<String, Double> owesTo) {
-        this.owesTo = owesTo;
+    public double getAmountOwedTo(Person personOwingTo) {
+        return owesTo.getOrDefault(personOwingTo, 0.0);
+    }
+
+    public void increaseAmountOwedTo(Person personOwingTo, double amountOwed) {
+        double currentAmount = owesTo.getOrDefault(personOwingTo, 0.0);
+        owesTo.put(personOwingTo, currentAmount + amountOwed);
+    }
+
+    // Functions
+    public String toString() {
+        return "Person{" +
+                "\n  >   USER_ID = " + USER_ID +
+                "\n  > FIRSTNAME = '" + FIRSTNAME + '\'' +
+                "\n  >  LASTNAME = '" + LASTNAME + '\'' +
+                "\n  > totalPaid = " + totalPaid +
+                "\n  > totalOwed = " + totalOwed +
+                "\n  >    owesTo = " + owesTo +
+                "\n}";
     }
 }
 

@@ -1,0 +1,23 @@
+    Vacation:
+  > 1            UUID:  VACATION_ID
+  > 1          String:  VACATION_NAME
+  > 1   LocalDateTime:  VACATION_DATE
+  > 1..n       Person:  participants
+  > 0..n  Transaction:  transactions
+  
+  
+    Transaction:
+  > 1                 UUID:  TRANSACTION_ID
+  > 1        LocalDateTime:  TRANSACTION_DATE
+  > 1               Person:  payer
+  > 1               double:  totalAmount
+  > 1  Map<Person, Double>:  distribution
+  
+    
+    Person:
+  > 1                 UUID:  USER_ID
+  > 1               String:  FIRSTNAME
+  > 1               String:  LASTNAME
+  > 1               double:  totalAmountPayed
+  > 1               double:  totalAmountOwed
+  > 1  Map<Person, Double>:  owesTo
