@@ -30,7 +30,7 @@ public class StorageManager {
         }
     }
 
-    public boolean createNewCavation(String vacationName) {
+    public boolean createNewVacation(String vacationName) {
         File vacationFolder = new File(BASE_DIRECTORY, vacationName);
         if(!vacationFolder.exists()) {
             return vacationFolder.mkdirs(); // Create the directory, including any necessary but nonexistent parent directories

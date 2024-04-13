@@ -1,8 +1,11 @@
 package nrn.noah.priv.util;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
+
+import nrn.noah.priv.helper.PrettyPrinter;
 
 public class Transaction {
 
@@ -57,22 +60,21 @@ public class Transaction {
     }
 
     // Functions
-    public String toString() {
-        return "Transaction{" +
-                "\n  >   TRANSACTION_ID = " + TRANSACTION_ID +
-                "\n  > TRANSACTION_DATE = " + TRANSACTION_DATE +
-                "\n  >            payer = " + payer.FIRSTNAME() + ", " + payer.LASTNAME() +
-                "\n  >      totalAmount = " + totalAmount +
-                "\n  >     distribution = " + distribution +
-                "\n}";
+    public String toString(){
+        return "\u2503" + 
+                PrettyPrinter.prettyUUID(TRANSACTION_ID) + "\u2503" +
+                PrettyPrinter.prettyTransactionDate(TRANSACTION_DATE) + "\u2503" + 
+                PrettyPrinter.prettyPayer(payer) + "\u2503" +
+                PrettyPrinter.prettyTotalAmount(totalAmount) + 
+                "\u2503";
     }
 
-    public static String toStringHeader(){
-        return "           TRANSACTION_ID           |       TRANSACTION_DATE       |        PAYER       |TOTAL_AMOUNT|" + 
-               "\n____________________________________|______________________________|____________________|____________|";
-    }
-
-    public String toStringBody(){
-        return TRANSACTION_ID + "|" + TRANSACTION_DATE.getYear() + "-" + TRANSACTION_DATE.getMonthValue() + "-" + TRANSACTION_DATE.getDayOfMonth() + " " + TRANSACTION_DATE.getHour() + ":" + TRANSACTION_DATE.getMinute() + ":" + TRANSACTION_DATE.getSecond() + "|" + payer.FIRSTNAME() + " " + payer.LASTNAME() + "|" + totalAmount + "|";
+    public static String toStringHeadline(){
+        return PrettyPrinter.prettyHeadline(new ArrayList<>(){{
+            add("TRANSACTION_ID");
+            add("TRANSACTION_DATE");
+            add("PAYER");
+            add("TOTAL_AMOUNT");
+        }}, new int[]{36, 20, 22, 12});
     }
 }

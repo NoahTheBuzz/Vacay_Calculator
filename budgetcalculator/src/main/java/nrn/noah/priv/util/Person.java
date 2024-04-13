@@ -68,14 +68,7 @@ public class Person {
 
     // Functions
     public String toString() {
-        return "Person{" +
-                "\n  >   USER_ID = " + USER_ID +
-                "\n  > FIRSTNAME = '" + FIRSTNAME + '\'' +
-                "\n  >  LASTNAME = '" + LASTNAME + '\'' +
-                "\n  > totalPaid = " + totalPaid +
-                "\n  > totalOwed = " + totalOwed +
-                "\n  >    owesTo = " + owesTo +
-                "\n}";
+        return "(" + FIRSTNAME + " " + LASTNAME + ")";
     }
 }
 

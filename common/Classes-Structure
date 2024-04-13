@@ -21,3 +21,5 @@
   > 1               double:  totalAmountPayed
   > 1               double:  totalAmountOwed
   > 1  Map<Person, Double>:  owesTo
+  
+  
