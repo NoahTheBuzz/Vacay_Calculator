@@ -54,9 +54,9 @@ public class App
             System.out.println(t.toString());
         }
 
-        String basePath = "/home/noah/Projects/Test_Center/";
+        String basePath = "/home/noahthebuzz/Projects/Test_Center/";
         JsonFileManager jsonFileManager = JsonFileManager.getInstance();
-        jsonFileManager.initialize("/home/noahthebuzz/Projects/Test_Center/");
+        jsonFileManager.initialize(basePath);
 
         jsonFileManager.saveData(vacation, "vacations", vacation.VACATION_NAME() + ".json");
     }
